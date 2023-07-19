@@ -15,4 +15,22 @@ const signup = async (req, res) => {
   }
 };
 
-module.exports = { signup };
+const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) return res.sendStatus(401);
+
+    const passwordMatch = bcrypt.compareSync(password, user.password);
+    if (!passwordMatch) return res.sendStatus(401);
+
+    res.sendStatus(200);
+  } catch (e) {
+    console.log(e);
+    res.sendStatus(400);
+  }
+};
+
+const logout = (req, res) => {};
+
+module.exports = { signup, login, logout };

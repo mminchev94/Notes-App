@@ -18,6 +18,8 @@ app.use(cors());
 database();
 
 app.post("/signup", usersController.signup);
+app.post("/login", usersController.login);
+app.get("/logout", usersController.logout);
 
 app.post("/notes", notesController.createNote);
 app.get("/notes", notesController.fetchNotes);
