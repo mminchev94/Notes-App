@@ -11,4 +11,14 @@ const createNote = async (req, res) => {
   }
 };
 
-module.exports = { createNote };
+const fetchNotes = async (req, res) => {
+  try {
+    const notes = await Note.find();
+
+    res.json({ notes });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+module.exports = { createNote, fetchNotes };

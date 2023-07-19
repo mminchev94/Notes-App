@@ -17,5 +17,6 @@ app.use(cors());
 database();
 
 app.post("/notes", notesController.createNote);
+app.get("/notes", notesController.fetchNotes);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
