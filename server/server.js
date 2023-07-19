@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const database = require("./config/database");
+const notesController = require("./controllers/notesController");
 
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
@@ -15,8 +16,6 @@ app.use(cors());
 
 database();
 
-app.get("/", (req, res) => {
-  res.json({ hello: "world" });
-});
+app.post("/notes", notesController.createNote);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
