@@ -5,9 +5,10 @@ if (process.env.NODE_ENV !== "production") {
 const express = require("express");
 const cors = require("cors");
 const database = require("./config/database");
+const cookieParser = require("cookie-parser");
 const notesController = require("./controllers/notesController");
 const usersController = require("./controllers/usersController");
-const cookieParser = require("cookie-parser");
+const auth = require("./middleware/auth");
 
 const port = process.env.PORT || 3000;
 
@@ -22,6 +23,7 @@ database();
 app.post("/signup", usersController.signup);
 app.post("/login", usersController.login);
 app.get("/logout", usersController.logout);
+app.get("/auth", auth, usersController.auth);
 
 app.post("/notes", notesController.createNote);
 app.get("/notes", notesController.fetchNotes);

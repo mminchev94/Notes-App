@@ -42,4 +42,9 @@ const login = async (req, res) => {
 
 const logout = (req, res) => {};
 
-module.exports = { signup, login, logout };
+const auth = (req, res) => {
+  console.log(req.user);
+  res.sendStatus(200);
+};
+
+module.exports = { signup, login, logout, auth };
