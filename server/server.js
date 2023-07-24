@@ -1,12 +1,13 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 const express = require("express");
 const cors = require("cors");
 const database = require("./config/database");
 const notesController = require("./controllers/notesController");
 const usersController = require("./controllers/usersController");
-
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-}
+const cookieParser = require("cookie-parser");
 
 const port = process.env.PORT || 3000;
 
@@ -14,6 +15,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser());
 
 database();
 
