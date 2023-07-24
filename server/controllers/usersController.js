@@ -40,7 +40,10 @@ const login = async (req, res) => {
   }
 };
 
-const logout = (req, res) => {};
+const logout = (req, res) => {
+  res.clearCookie("Authorization");
+  res.sendStatus(200);
+};
 
 const auth = (req, res) => {
   console.log(req.user);

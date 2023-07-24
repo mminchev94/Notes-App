@@ -5,6 +5,8 @@ const auth = async (req, res, next) => {
   try {
     const token = req.cookies.Authorization;
 
+    if (!token) return res.sendStatus(401);
+
     const decoded = jwt.verify(token, process.env.SECRET);
 
     const user = await User.findById(decoded.userID);
