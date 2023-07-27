@@ -27,13 +27,13 @@ database();
 
 app.post("/signup", usersController.signup);
 app.post("/login", usersController.login);
-app.get("/logout", usersController.logout);
+app.post("/logout", usersController.logout);
 app.get("/auth", auth, usersController.auth);
 
-app.post("/notes", notesController.createNote);
-app.get("/notes", notesController.fetchNotes);
-app.get("/notes/:id", notesController.fetchNote);
-app.put("/notes/:id", notesController.updateNote);
-app.delete("/notes/:id", notesController.deleteNote);
+app.post("/notes", auth, notesController.createNote);
+app.get("/notes", auth, notesController.fetchNotes);
+app.get("/notes/:id", auth, notesController.fetchNote);
+app.put("/notes/:id", auth, notesController.updateNote);
+app.delete("/notes/:id", auth, notesController.deleteNote);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
