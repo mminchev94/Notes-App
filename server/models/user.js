@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  notes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Notes" }],
 });
 
 const User = mongoose.model("User", userSchema);
